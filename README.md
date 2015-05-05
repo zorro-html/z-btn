@@ -1,25 +1,34 @@
-# Btn
+# `<z-btn>`
 
-按钮
+All kinds of buttons
 
-# Example
+## Attributes
+
+- `active`
+- `disabled`
+- `primary`
+- `xs` | `sm` | `lg`
+- `block`
+
+
+## Examples
+
+### inline-block buttons
 
 ```
-<jie-btn>Click Me!</jie-btn>
-<jie-btn active>Click Me!</jie-btn>
-<jie-btn disabled>Click Me!</jie-btn>
-<jie-btn primary>Click Me!</jie-btn>
-<jie-btn xs>Click Me!</jie-btn>
-<jie-btn sm>Click Me!</jie-btn>
-<jie-btn lg>Click Me!</jie-btn>
-<jie-btn block>Click Me!</jie-btn>
-<jie-btn block primary lg>Click Me!</jie-btn>
+<p>
+  <z-btn>default button</z-btn>
+  <z-btn primary>primary button</z-btn>
+  <z-btn xs>x-small button</z-btn>
+  <z-btn sm>small button</z-btn>
+  <z-btn lg primary>large primary button</z-btn>
+</p>
 ```
 
-## 可用的 attributes
+### block buttons
 
-* active
-* disabled
-* primary
-* xs | sm | lg
-* block
+```
+<p><z-btn block>block button</z-btn></p>
+<p><z-btn block primary>primary block button</z-btn></p>
+<p><z-btn block primary lg>lg primary block button</z-btn></p>
+```

@@ -1,26 +1,48 @@
 <!--
-  # btn
 
-  按钮
+@element z-btn
 
-  # Example
+# `<z-btn>`
 
-  ```
-  <jie-btn>Click Me!</jie-btn>
-  <jie-btn active>Click Me!</jie-btn>
-  <jie-btn disabled>Click Me!</jie-btn>
-  <jie-btn primary>Click Me!</jie-btn>
-  <jie-btn xs>Click Me!</jie-btn>
-  <jie-btn sm>Click Me!</jie-btn>
-  <jie-btn lg>Click Me!</jie-btn>
-  <jie-btn block>Click Me!</jie-btn>
-  <jie-btn block primary lg>Click Me!</jie-btn>
-  ```
+All kinds of buttons
+
+## attributes
+
+- `active`
+- `disabled`
+- `primary`
+- `xs` | `sm` | `lg`
+- `block`
+
+-->
+
+<!--
+
+@example inline-block buttons
+
+<p>
+  <z-btn>default button</z-btn>
+  <z-btn primary>primary button</z-btn>
+  <z-btn xs>x-small button</z-btn>
+  <z-btn sm>small button</z-btn>
+  <z-btn lg primary>large primary button</z-btn>
+</p>
+
+-->
+
+<!--
+
+@example block buttons
+
+<p><z-btn block>block button</z-btn></p>
+<p><z-btn block primary>primary block button</z-btn></p>
+<p><z-btn block primary lg>lg primary block button</z-btn></p>
+
 -->
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="jie-btn" attributes="">
+<polymer-element name="z-btn" attributes="">
 
   <template>
     <style>
@@ -43,7 +65,6 @@
         -ms-user-select: none;
         -o-user-select: none;
         user-select: none;
-        box-sizing: border-box;
       }
       :host(:focus) {
         outline: thin dotted;
@@ -156,7 +177,51 @@
   </template>
 
   <script>
-    Polymer('jie-btn', {});
+    /**
+     * 按钮被加载成功之后，会“刷新”元素的特性，以回避 Chrome 的渲染 bug
+     * @event ready
+     */
+    Polymer('z-btn', {
+      fixRenderingBug: function (attr) {
+        if (this.hasAttribute('block')) {
+          return;
+        }
+        var attrList = ['active', 'primary', 'xs', 'sm', 'lg'].filter(function (attr) {
+          return this.hasAttribute(attr);
+        }.bind(this));
+        attrList.forEach(function (attr) {
+          this.removeAttribute(attr);
+        }.bind(this));
+        setTimeout(function () {
+          attrList.forEach(function (attr) {
+            this.setAttribute(attr, '');
+          }.bind(this));
+        }.bind(this));
+      },
+      ready: function () {
+
+        // fixed init-rendering bug
+        this.fixRenderingBug();
+
+        this.addEventListener('click', function (e) {
+          if (this.hasAttribute('disabled')) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return;
+          }
+          var href = this.getAttribute('href');
+          if (href) {
+            if (this.getAttribute('target') === '_blank') {
+              open(href);
+            }
+            else {
+              location.href = href;
+            }
+          }
+        });
+      }
+    });
   </script>
 
 </polymer-element>
