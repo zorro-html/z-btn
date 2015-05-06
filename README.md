@@ -2,14 +2,13 @@
 
 All kinds of buttons
 
-## Attributes
+## attributes
 
 - `active`
 - `disabled`
 - `primary`
 - `xs` | `sm` | `lg`
 - `block`
-
 
 ## Examples
 
