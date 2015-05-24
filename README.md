@@ -2,7 +2,13 @@
 
 All kinds of buttons
 
-## attributes
+## Import
+
+```
+<link rel="import" href="z-btn/z-btn.html">
+```
+
+## Attributes
 
 - `active`
 - `disabled`
